@@ -1,0 +1,27 @@
+@use "../../styles/variables" as v;
+.mobile-app{
+    background-color: v.$color1;
+    transform: translate(50px);
+    -webkit-transform: translate(50px);
+    -moz-transform: translate(50px);
+    -ms-transform: translate(50px);
+    -o-transform: translate(50px);
+ >div{
+    padding: 50px;
+ }
+ div[class^="col"]{
+   display: flex;
+   align-items: center;
+    &:last-child{
+        justify-content: start;
+        button{
+            margin-left: 10px;
+        }
+        @media(min-width:992px){
+justify-content: end;
+        }
+    }
+
+
+ }
+}

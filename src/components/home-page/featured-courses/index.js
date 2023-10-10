@@ -1,5 +1,5 @@
 import React from 'react'
-//import "./featured-courses.scss";
+import "./featured-courses.scss";
 import { Col, Container, Row } from 'react-bootstrap';
 import courses from "../../../helpers/data/courses.json";
 import CourseCard from '../../courses-page/course-card';

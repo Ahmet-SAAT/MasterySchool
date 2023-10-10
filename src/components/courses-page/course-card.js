@@ -1,15 +1,20 @@
 import React from 'react'
 import { Card } from 'react-bootstrap'
+import { FiUser, FiTrendingUp, FiDollarSign } from "react-icons/fi";
+import "./course-card.scss"
 const CourseCard = ({image, title, user, rating, price}) => {
   return (
     <Card className="course-card">
-      <Card.Img variant="top" src={`/images/courses/${image}`} alt={title} />
+   
       <Card.Body>
+        <div className="image"> 
+          <Card.Img variant="top" src={`/images/courses/${image}`} alt={title} />
+        </div> 
         <Card.Title>{title}</Card.Title>
         <Card.Subtitle>
-            <div>{user}</div>
-            <div>{rating}</div>
-            <div>{price}</div>
+            <div><FiUser/>{user}</div>
+            <div><FiTrendingUp/>{rating}</div>
+            <div><FiDollarSign/>{price}</div>
         </Card.Subtitle>
       </Card.Body>
     </Card>
