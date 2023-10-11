@@ -2,13 +2,16 @@
 .event-card {
   height: 100% !important;
   cursor: pointer;
+ 
   .card-title {
     color: v.$color2;
-    margin-top: 30px;
+    margin-top: 30x;
+    
   }
   .card-subtitle {
     display: flex;
     justify-content: space-between;
+    flex-wrap: wrap;
     align-items: center;
     color: v.$color1;
     margin-top: 10px;
