@@ -9,6 +9,7 @@ const Map = () => {
       allowFullScreen=""
       loading="lazy"
       referrerPolicy="no-referrer-when-downgrade"
+      style={{display:"block"}}
     ></iframe>
   );
 };

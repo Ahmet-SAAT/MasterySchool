@@ -1,11 +1,14 @@
-import React from 'react'
-import { Button, Col, Form, InputGroup, Row } from 'react-bootstrap'
+import React, { useState } from 'react'
+import { Button, Col, Form, InputGroup, Row, Spinner } from 'react-bootstrap'
 import { FiMail, FiMessageSquare, FiSend, FiTag, FiUser } from "react-icons/fi";
 import "./contact-form.scss"
-import * as Yup from "yup";
+import * as Yup from "yup";//kullanacagim icerikleri Yup ifadesiyle kullamncagim
 import { useFormik } from 'formik';
 import { isInValid, isValid } from '../../helpers/functions/forms';
+import { createMessage } from '../../api/contact-message-services';
+import { swalAlert } from '../../helpers/functions/swal';
 const ContactForm = () => {
+    const [loading, setLoading] = useState(false);
     const initialValues ={
         email: "",
         message: "",
@@ -13,13 +16,24 @@ const ContactForm = () => {
         subject: ""
     }
     const validationSchema = Yup.object({
-        email: Yup.string().email("Invalid email").required("Required"),
-        message: Yup.string().required("Required"),
-        name: Yup.string().required("Required"),
-        subject: Yup.string().required("Required")
+        email: Yup.string().email("Invalid email").max(50, "Max 50 characters").required("Required"),
+        message: Yup.string().required("Required").max(200, "Max 200 characters"),
+        name: Yup.string().required("Required").min(4, "At least 4 characters").max(30, "Max 30 characters"),
+        subject: Yup.string().required("Required").min(4, "At least 4 characters").max(30, "Max 30 characters")
     })
-    const onSubmit = (values) => {
-        
+    const onSubmit = async (values) => {
+        setLoading(true);
+        try {
+            const data = await createMessage(values);
+            formik.resetForm();
+            swalAlert("Your message was sent", "success");
+        } catch (err) {
+            const errMsg = Object.values(err.response.data.validations)[0];
+            swalAlert(errMsg, "error");
+        }
+        finally{
+            setLoading(false);
+        }
     }
     const formik = useFormik({
         initialValues,
@@ -41,6 +55,9 @@ const ContactForm = () => {
                         isValid={isValid(formik, "name")}
                         isInvalid={isInValid(formik, "name")}
                     />
+                    <Form.Control.Feedback type="invalid">
+                        {formik.errors.name}
+                    </Form.Control.Feedback>
                 </InputGroup>
             </Col>
             <Col md={6}>
@@ -55,6 +72,9 @@ const ContactForm = () => {
                         isValid={isValid(formik, "email")}
                         isInvalid={isInValid(formik, "email")}
                     />
+                    <Form.Control.Feedback type="invalid">
+                        {formik.errors.email}
+                    </Form.Control.Feedback>
                 </InputGroup>
             </Col>
             <Col xs={12}>
@@ -68,6 +88,9 @@ const ContactForm = () => {
                         isValid={isValid(formik, "subject")}
                         isInvalid={isInValid(formik, "subject")}
                     />
+                    <Form.Control.Feedback type="invalid">
+                        {formik.errors.subject}
+                    </Form.Control.Feedback>
                 </InputGroup>
             </Col>
             <Col xs={12}>
@@ -78,10 +101,15 @@ const ContactForm = () => {
                     isValid={isValid(formik, "message")}
                     isInvalid={isInValid(formik, "message")}
                 />
+                <Form.Control.Feedback type="invalid">
+                        {formik.errors.message}
+                    </Form.Control.Feedback>
                 </InputGroup>
             </Col>
         </Row>
-        <Button type="submit" variant="primary"><FiSend/> Send</Button>
+        <Button type="submit" variant="primary" disabled={!(formik.dirty && formik.isValid) || loading}>
+            {loading ? <Spinner animation="border" size="sm"/>  : <FiSend/>} Send
+        </Button>
       
     </Form>
   )
