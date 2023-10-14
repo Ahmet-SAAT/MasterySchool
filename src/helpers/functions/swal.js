@@ -7,3 +7,12 @@ export const swalAlert = (title, text="", icon="info") => {
         confirmButtonText: "Ok"
     })
 }
+export const swalConfirm = (title, text) =>{
+    return Swal.fire({
+      title,
+      text,
+      icon: "question",
+      showCancelButton: true,
+      confirmButtonText: 'Yes',
+    })
+  }

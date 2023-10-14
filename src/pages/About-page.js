@@ -2,7 +2,7 @@ import React from 'react'
 import PageHeader from '../components/common/page-header'
 import Spacer from '../components/common/spacer'
 import Instructor from '../components/about-page/instructors'
-const InstructorPage = () => {
+const AboutPage = () => {
   return (
     <>
         <PageHeader title="Instructors"/>
@@ -12,4 +12,4 @@ const InstructorPage = () => {
     </>
   )
 }
-export default InstructorPage
+export default AboutPage
