@@ -6,6 +6,8 @@ import CoursesPage from "../pages/courses-page";
 import EventsPage from "../pages/events-page";
 import InstructorPage from "../pages/instructor-page";
 import ContactPage from "../pages/contact-page";
+import LoginPage from "../pages/login-page";
+import DashboardPage from "../pages/dashboard/dashboard-page";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -27,9 +29,21 @@ const router = createBrowserRouter([
       },{
         path:"contact",
         element:<ContactPage/>
+      },{
+        path:"login",
+        element:<LoginPage/>
       }
     ],
-  },
+  },{
+    path:"dashboard",
+    children:[
+      {
+        index:true,
+        element:<DashboardPage/>
+
+      }
+    ]
+  }
 ]);
 const AppRouter = () => {
   return <RouterProvider router={router} />;

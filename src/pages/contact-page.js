@@ -6,7 +6,7 @@ const ContactPage = () => {
   return (
     <>
         <PageHeader title="Contact"/>
-        <Spacer/>
+        <Spacer height={50}/>
         <Contact/>
        
     </>
