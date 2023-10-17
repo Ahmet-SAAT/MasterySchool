@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit"
+import { getMenuItems } from "../../helpers/functions/user-menu";
 const initialState = {
     user: null,
     isUserLogin: false,
@@ -11,16 +12,15 @@ export const authSlice = createSlice({
         login: (state, action) => {
             state.isUserLogin = true;
             state.user = action.payload;
+            state.menu = getMenuItems(action.payload.role)
         },
         logout: (state) => {
             state.isUserLogin = false;
             state.user = null;
             state.menu = [];
         },
-        setMenu: (state, action) =>{
-            state.menu = action.payload
-        }
+      
     }
 })
-export const { login, logout, setMenu } = authSlice.actions;
+export const { login, logout } = authSlice.actions;
 export default authSlice.reducer;

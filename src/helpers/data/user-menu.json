@@ -1,15 +1,15 @@
 {
     "admin" : [
         { "title": "Admin Management", "link": "/dashboard/admin-management"},
-        { "title": "Dean Management", "link": "/dashboard/dean-management"},
-        { "title": "ViceDean Management", "link": "/dashboard/vice-dean-management"},
+        { "title": "Manager Management", "link": "/dashboard/manager-management"},
+        { "title": "Assistan Manager Management", "link": "/dashboard/assistant-manager-management"},
         { "title": "Lesson Management", "link": "/dashboard/lesson-management"},
         { "title": "Teacher Management", "link": "/dashboard/teacher-management"},
         { "title": "Student Management", "link": "/dashboard/student-management"},
         { "title": "Contacts", "link": "/dashboard/contact-messages"}
     ],
     "manager" : [
-        { "title": "ViceDean Management", "link": "/dashboard/vice-dean-management"},
+        { "title": "Assistan Manager Management", "link": "/dashboard/assistant-manager-management"},
         { "title": "Contacts", "link": "/dashboard/contact-messages"}
     ],
     "assistantmanager" : [

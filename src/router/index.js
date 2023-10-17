@@ -9,6 +9,9 @@ import ContactPage from "../pages/contact-page";
 import LoginPage from "../pages/login-page";
 import DashboardPage from "../pages/dashboard/dashboard-page";
 import AdminManagementPage from "../pages/dashboard/admin-management-page";
+import PrivateRoute from "./private-route";
+import { config } from "../helpers/config";
+import UnauthorizedPage from "../pages/unauthorized-page";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -34,15 +37,18 @@ const router = createBrowserRouter([
         path:"login",
         element:<LoginPage/>
       },{
+        path:"unauthorized",
+        element:<UnauthorizedPage/>
+      },{
         path:"dashboard",
         children:[
           {
             index:true,
-            element:<DashboardPage/>
+            element:<PrivateRoute roles={config.pageRoles.dashboard}><DashboardPage/></PrivateRoute>
 
           },{
             path:"admin-management",
-            element:<AdminManagementPage/>
+            element:<PrivateRoute roles={config.pageRoles.adminManagement}><AdminManagementPage/></PrivateRoute>
           }
         ]
       }

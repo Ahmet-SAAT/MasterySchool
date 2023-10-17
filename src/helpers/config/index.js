@@ -24,5 +24,9 @@ export const config = {
     api: {
         baseUrl: 'https://mycampusmates.com/app',
     },
+    pageRoles:{
+        dashboard:["ADMIN","ASSISTANMANAGER","MANAGER","TEACHER","STUDENT"],
+        adminManagement:["ADMIN"]
+    }
     
     }
